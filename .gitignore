@@ -1,0 +1,5 @@
+# Ignore videos folder
+videos/
+
+# Ignore audios folder
+audios/
