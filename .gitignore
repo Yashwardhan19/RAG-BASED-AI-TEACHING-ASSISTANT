@@ -3,3 +3,12 @@ videos/
 
 # Ignore audios folder
 audios/
+
+#Ignore output.json
+jsons/
+
+#Ignore prompt.txt
+prompt.txt
+
+#Ignore response.txt
+response.txt

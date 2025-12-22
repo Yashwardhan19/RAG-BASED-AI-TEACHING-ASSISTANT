@@ -1,1 +1,6 @@
 whisper
+requests
+ollama
+pandas
+scikit-learn
+numpy
