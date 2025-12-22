@@ -12,3 +12,6 @@ prompt.txt
 
 #Ignore response.txt
 response.txt
+
+#Ignore embeddings.joblib
+embeddings.joblib
