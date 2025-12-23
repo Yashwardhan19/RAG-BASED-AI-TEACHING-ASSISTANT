@@ -16,6 +16,7 @@ def create_embedding(text_list):
     return embedding
 
 def inference(prompt):
+    print('Thinking...')
     r = requests.post("http://localhost:11434/api/generate", json={
         # "model": "deepseek-r1",
         "model": "llama3.2",
@@ -55,6 +56,7 @@ User asked this question related to the video chunks, you have to answer in a hu
 '''
 with open("prompt.txt", "w") as f:
     f.write(prompt)
+
 
 response = inference(prompt)["response"]
 print(response)
