@@ -4,7 +4,7 @@ videos/
 # Ignore audios folder
 audios/
 
-#Ignore output.json
+#Ignore json folder
 jsons/
 
 #Ignore prompt.txt
@@ -15,3 +15,6 @@ response.txt
 
 #Ignore embeddings.joblib
 embeddings.joblib
+
+#Ignore newjsons folder
+newjsons/
