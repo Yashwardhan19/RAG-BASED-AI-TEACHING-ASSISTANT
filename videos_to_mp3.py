@@ -8,3 +8,8 @@ for file in files:
     file_name = file.split(" ｜ ")[0]
     print( tutorial_number,  file_name)
     subprocess.run(["ffmpeg", "-i", f"videos/{file}", f"audios/{tutorial_number}_{file_name}.mp3"])
+
+    #ffmpeg is a powerful multimedia framework. In this code, we are using ffmpeg to convert video files to mp3 audio files.
+    
+    #subprocess is used to run the ffmpeg command in the terminal, which converts the video file to mp3 format and saves it in the audios folder with a new name that includes the tutorial number and file name.
+
