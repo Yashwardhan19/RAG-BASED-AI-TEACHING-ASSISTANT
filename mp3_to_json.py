@@ -1,4 +1,4 @@
-import whisper
+import whisper 
 import json
 import os
 
@@ -23,3 +23,5 @@ for audio in audios:
 
         with open(f"jsons/{audio}.json", "w") as f:
             json.dump(chunks_with_metadata,f)
+
+#whisper is a library for automatic speech recognition (ASR) that can transcribe audio files into text. In this code, we are using the whisper library to transcribe audio files from the "audios" folder and save the transcriptions as JSON files in the "jsons" folder.
