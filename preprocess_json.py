@@ -17,12 +17,12 @@ def create_embedding(text_list):
     return embedding
 
 
-jsons = os.listdir("newjsons")  # List all the jsons 
+jsons = os.listdir("jsons")  # List all the jsons 
 my_dicts = []
 chunk_id = 0
 
 for json_file in jsons:
-    with open(f"newjsons/{json_file}") as f:
+    with open(f"jsons/{json_file}") as f:
         content = json.load(f)
     print(f"Creating Embeddings for {json_file}")
     embeddings = create_embedding([c['text'] for c in content['chunks']])
@@ -37,3 +37,7 @@ for json_file in jsons:
 df = pd.DataFrame.from_records(my_dicts)
 # Save this dataframe
 joblib.dump(df, 'embeddings.joblib')
+
+
+
+#In this code, we are creating embeddings for the transcribed text chunks from the JSON files generated in the previous step. We use the Ollama API to generate embeddings for each text chunk and store them in a DataFrame. Finally, we save the DataFrame as a joblib file for later use in similarity calculations or other analyses.
