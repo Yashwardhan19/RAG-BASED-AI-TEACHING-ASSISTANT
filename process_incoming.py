@@ -22,7 +22,7 @@ def inference(prompt):
         "model": "llama3.2",
         "prompt": prompt,
         "stream": False
-    })
+    })  
 
     response = r.json()
     return response
@@ -63,4 +63,7 @@ print(response)
 
 with open("response.txt", "w") as f:
     f.write(response)
+
+
+#In this code we are taking the incoming query from the user and creating an embedding for that query. Then we are finding the cosine similarity of that embedding with all the embeddings in our dataframe and getting the top 5 most similar chunks. Then we are creating a prompt for the language model where we are giving the top 5 most similar chunks and the user query and asking the model to answer the question based on those chunks. Finally we are printing the response from the model.
 

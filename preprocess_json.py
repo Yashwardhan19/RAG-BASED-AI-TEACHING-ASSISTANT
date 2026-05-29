@@ -17,9 +17,9 @@ def create_embedding(text_list):
     return embedding
 
 
-jsons = os.listdir("jsons")  # List all the jsons 
+jsons = os.listdir("newjsons")  # List all the jsons 
 my_dicts = []
-chunk_id = 0
+chunk_id = 0 
 
 for json_file in jsons:
     with open(f"jsons/{json_file}") as f:
