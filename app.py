@@ -91,6 +91,11 @@ st.markdown("""
 
     /* Hide streamlit branding */
     #MainMenu, footer { visibility: hidden; }
+
+    /* Hide press enter to apply */
+    .stTextInput div[data-baseweb="input"] + div { display: none !important; }
+    small.st-emotion-cache-eczf16 { display: none !important; }
+    [data-testid="InputInstructions"] { display: none !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -176,6 +181,8 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 if "sources" not in st.session_state:
     st.session_state.sources = {}
+if "input_key" not in st.session_state:
+    st.session_state.input_key = 0
 
 
 # ── Load data ─────────────────────────────────────────────────
@@ -238,7 +245,7 @@ with col1:
         "Ask a question",
         placeholder="e.g. Where is Flexbox taught? How do I center a div?",
         label_visibility="collapsed",
-        key="user_input"
+        key=f"user_input_{st.session_state.input_key}"
     )
 
 with col2:
@@ -251,6 +258,7 @@ if ask_btn and user_input.strip() and user_input.strip() != st.session_state.las
         st.error("embeddings.joblib not found. Cannot answer questions.")
     else:
         st.session_state.last_query = user_input.strip()
+        st.session_state.input_key += 1
         st.session_state.messages.append({"role": "user", "content": user_input})
 
         with st.spinner("Searching course content..."):
