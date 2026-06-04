@@ -41,3 +41,5 @@ joblib.dump(df, 'embeddings.joblib')
 
 
 #In this code, we are creating embeddings for the transcribed text chunks from the JSON files generated in the previous step. We use the Ollama API to generate embeddings for each text chunk and store them in a DataFrame. Finally, we save the DataFrame as a joblib file for later use in similarity calculations or other analyses.
+
+
