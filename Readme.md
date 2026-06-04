@@ -9,10 +9,10 @@ CourseGPT is a RAG (Retrieval-Augmented Generation) based AI teaching assistant 
 ## 📸 Demo
 
 ### Home Screen
-![CourseGPT Home](public/Screenshot_2026-06-04_123812.png)
+![CourseGPT Home](public/home_screen.png)
 
 ### Asking a Question
-![CourseGPT Response](public/Screenshot_2026-06-04_124054.png)
+![CourseGPT Response](public/asking_question.png)
 
 ---
 
