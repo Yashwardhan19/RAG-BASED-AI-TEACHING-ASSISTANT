@@ -18,3 +18,5 @@ embeddings.joblib
 
 #Ignore newjsons folder
 newjsons/
+
+embeddings.joblib
