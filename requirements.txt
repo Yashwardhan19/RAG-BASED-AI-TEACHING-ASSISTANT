@@ -4,3 +4,7 @@ ollama
 pandas
 scikit-learn
 numpy
+streamlit
+joblib
+google-genai
+dotenv

@@ -5,6 +5,22 @@ import numpy as np
 import joblib
 import requests
 import time
+import os
+from dotenv import load_dotenv
+from google import genai
+import logging
+logging.getLogger("google_genai.models").setLevel(logging.ERROR)
+
+# ── Gemini client ────────────────────────────────────────────
+# Loads GEMINI_API_KEY from a .env file in the project root.
+load_dotenv()
+
+API_KEY = os.getenv("GEMINI_API_KEY")
+if not API_KEY:
+    raise ValueError("GEMINI_API_KEY is not set (put it in a .env file)")
+
+GEMINI_MODEL = "gemini-3.6-flash"
+gemini_client = genai.Client(api_key=API_KEY)
 
 # ── Page config ──────────────────────────────────────────────
 st.set_page_config(
@@ -125,12 +141,11 @@ def create_embedding(text_list):
 
 def inference(prompt):
     try:
-        r = requests.post("http://localhost:11434/api/generate", json={
-            "model": "llama3.2",
-            "prompt": prompt,
-            "stream": False
-        }, timeout=120)
-        return r.json()
+        response = gemini_client.models.generate_content(
+            model=GEMINI_MODEL,
+            contents=prompt,
+        )
+        return {"response": response.text}
     except Exception as e:
         st.error(f"LLM error: {e}")
         return None

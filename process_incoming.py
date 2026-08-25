@@ -3,6 +3,18 @@ from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np 
 import joblib 
 import requests
+import os
+from google import genai
+from dotenv import load_dotenv
+
+load_dotenv()
+
+API_KEY = os.getenv("GEMINI_API_KEY")
+if not API_KEY:
+    raise ValueError("GEMINI_API_KEY is not set (put it in a .env file)")
+
+GEMINI_MODEL = "gemini-3.6-flash"
+gemini_client = genai.Client(api_key=API_KEY)
 
 
 def create_embedding(text_list):
@@ -17,15 +29,11 @@ def create_embedding(text_list):
 
 def inference(prompt):
     print('Thinking...')
-    r = requests.post("http://localhost:11434/api/generate", json={
-        # "model": "deepseek-r1",
-        "model": "llama3.2",
-        "prompt": prompt,
-        "stream": False
-    })  
-
-    response = r.json()
-    return response
+    response = gemini_client.models.generate_content(
+        model=GEMINI_MODEL,
+        contents=prompt,
+    )
+    return {"response": response.text}
 
 df = joblib.load('embeddings.joblib')
 
@@ -66,4 +74,3 @@ with open("response.txt", "w") as f:
 
 
 #In this code we are taking the incoming query from the user and creating an embedding for that query. Then we are finding the cosine similarity of that embedding with all the embeddings in our dataframe and getting the top 5 most similar chunks. Then we are creating a prompt for the language model where we are giving the top 5 most similar chunks and the user query and asking the model to answer the question based on those chunks. Finally we are printing the response from the model.
-
